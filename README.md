@@ -1,24 +1,38 @@
-# README
+# Dog is fine!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+日々あった出来事や、ためになったこと、自分の飼い犬の成長日記などとして使えるブログぺージと、
+飼い犬のご飯を作るにあたって、その子の体重であればどのくらいの栄養を取ればいいのかなどの計算ツールや、
+予定などをメモするためのカレンダーを用意した、
+飼い犬を愛している方に役に立つ内容を多く賄えることを目指したサイトです。
 
-Things you may want to cover:
+### サイトテーマ
+犬を飼っている方達へ向けた、情報交換やご飯のカロリー計算、予定のメモを行ったりするページ。
 
-* Ruby version
+### テーマを選んだ理由
+実際に現在犬を飼っており、世話をするにあたって様々なページを次々に見ていかなければならない状態に多く陥ったので、
+一つのページでそれらをまかなえれば便利だと考えたから。
 
-* System dependencies
+### ターゲットユーザ
+犬を飼っている人、中でも高齢犬のようによく調べて世話をしなければいけなかったりする犬を飼っている人。
 
-* Configuration
+### 主な利用シーン
+日記として犬のことを残しておきたいとき
+バランスのいいご飯を作るときに必要な栄養素・食材などを調べるとき
 
-* Database creation
+## 設計書
+<...>
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1o7WzEyDdJ3jn6BzPIK_KTCsdRdae7-av8p_ZTQyoshs/edit#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
