@@ -21,7 +21,6 @@
 - バランスのいいご飯を作るときに必要な栄養素・食材などを調べるとき
 
 ## 設計書
-<...>
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1o7WzEyDdJ3jn6BzPIK_KTCsdRdae7-av8p_ZTQyoshs/edit#gid=0
