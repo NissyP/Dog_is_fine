@@ -18,10 +18,16 @@ Rails.application.routes.draw do
   
   scope module: :admin do
     devise_for :admin, controllers: {
-      sessions: 'admin/admin/sessions',
-      passwords: 'admin/admin/passwords',
-      registrations: 'admin/admin/registrations'
+      sessions: 'admin/admins/sessions',
+      passwords: 'admin/admins/passwords',
+      registrations: 'admin/admins/registrations'
     }
+  end
+  
+  namespace :admin do
+    resources :blogs
+    resources :genres
+    resources :users, only: [:index, :show, :edit, :update]
   end
   
 end
