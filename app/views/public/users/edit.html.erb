@@ -1,0 +1,31 @@
+<%= form_with model: @user, url: users_path, local: true do |f| %>
+
+<div>
+ <div>
+  <span>
+   <i class="far fa-edit fa-3x"></i>
+   <h2>登録情報編集</h2><br>
+  </span>
+  <form>
+   <fieldset class="form-group">
+　  <div class="form-group">
+     <label>名前</label>
+     <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control"%>
+    </div>
+    <div class="form-group">
+     <label>自己紹介</label>
+     <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction", class:"form-control" %>
+    </div>
+    <div class="form-group">
+     <label>メールアドレス</label>
+     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
+
+    <div class="actions">
+     <%= f.submit "編集内容を保存する", class:'btn btn-outline-info' %>
+    </div>
+  </form>
+ </div>
+</div>
+
+<% end %>
