@@ -1,4 +1,5 @@
 class Public::BlogsController < ApplicationController
+  
   def new
     @blog = Blog.new
   end
@@ -32,6 +33,6 @@ class Public::BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :image)
+    params.require(:blog).permit(:title, :body, :genre, :image)
   end
 end
