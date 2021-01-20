@@ -1,0 +1,8 @@
+<% @blogs.each do |blog| %>
+<div>
+  <%= attachment_image_tag blog, :image %>
+  <p>タイトル：<%= blog.title %></p>
+  <p>本文：<%= blog.body %></p>
+  <p>投稿者：<%= blog.user.name %></p>
+</div>
+<% end %>
