@@ -2,6 +2,7 @@ class Public::BlogsController < ApplicationController
   
   def new
     @blog = Blog.new
+    @genres = Genre.where(is_active: 'true')
   end
 
   def create
@@ -10,6 +11,7 @@ class Public::BlogsController < ApplicationController
     if @blog.save
       redirect_to blogs_path
     else
+      @genres = Genre.where(is_active: 'true')
       render "new"
     end
   end
@@ -19,6 +21,7 @@ class Public::BlogsController < ApplicationController
   end
 
   def show
+    @blog = Blog.find(params[:id])
   end
   
   def edit
@@ -33,6 +36,6 @@ class Public::BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :genre, :image)
+    params.require(:blog).permit(:title, :body, :genre_id, :image)
   end
 end

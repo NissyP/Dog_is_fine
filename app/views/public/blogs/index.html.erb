@@ -1,8 +1,28 @@
-<% @blogs.each do |blog| %>
-<div>
-  <%= attachment_image_tag blog, :image %>
-  <p>タイトル：<%= blog.title %></p>
-  <p>本文：<%= blog.body %></p>
-  <p>投稿者：<%= blog.user.name %></p>
-</div>
-<% end %>
+<!--<% @blogs.each do |blog| %>-->
+<!--<div>-->
+<!--  <%= attachment_image_tag blog, :image %>-->
+<!--  <p>タイトル：<%= blog.title %></p>-->
+<!--  <p>本文：<%= blog.body %></p>-->
+<!--  <p>投稿者：<%= blog.user.name %></p>-->
+<!--</div>-->
+<!--<% end %>-->
+
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>カテゴリ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.id %></td>
+        <td><%= link_to blog.title, blog_path(blog) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
