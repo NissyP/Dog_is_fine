@@ -2,8 +2,10 @@
   		<table class='table'>
   		  <tr>
   		    <td><%= attachment_image_tag @blog, :image, format: 'jpeg', size: "200x200" %></td>
+  		    <td><%= @blog.start_time.strftime("%Y/%m/%d %H:%M") %></td>
           <td><%= link_to @blog.title, blog_path(@blog) %></td>
           <td><%= @blog.body %></td>
+          <td><%= @blog.genre.name %></td>
           <% if @blog.user.id == current_user.id %>
           <td><%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-sm btn-success edit_book_#{@blog.id}" %></td>
           <td><%= link_to 'Destroy', blog_path(@blog), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@blog.id}"%></td>

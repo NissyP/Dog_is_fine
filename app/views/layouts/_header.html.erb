@@ -12,10 +12,12 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+            <li><%= link_to ' ブログ一覧', blogs_path, class: 'nav-link text-light' %></li>
             <li><%= link_to ' マイページ', users_my_page_path, class: 'nav-link text-light' %></li>
             <li><%= link_to ' 投稿フォーム', new_blog_path, class: 'nav-link text-light' %></li>
             <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-light' %></li>
           <% elsif admin_signed_in? %>
+            <li><%= link_to ' 会員一覧', admin_users_path, class: 'nav-link text-light' %></li>
             <li><%= link_to ' カテゴリ', admin_genres_path, class: 'nav-link text-light' %></li>
             <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %></li>
           <% else %>

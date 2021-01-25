@@ -17,7 +17,13 @@ class Public::BlogsController < ApplicationController
   end
 
   def index
-    @blogs = Blog.all
+    @genres = Genre.where(is_active: true)
+    if params[:genre_id].blank?
+  		@blogs = Blog.all
+    else
+  	  @genre = Genre.find(params[:genre_id])
+  		@blogs = @genre.blogs.all
+    end
   end
 
   def show
@@ -25,9 +31,20 @@ class Public::BlogsController < ApplicationController
   end
   
   def edit
+    @blog = Blog.find(params[:id])
+    @genres = Genre.where(is_active: 'true')
+    if @blog.user != current_user
+      redirect_to blogs_path
+    end
   end
   
   def update
+    @blog = Blog.find(params[:id])
+    if @blog.update(blog_params)
+      redirect_to blog_path(@blog)
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -36,6 +53,6 @@ class Public::BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :genre_id, :image)
+    params.require(:blog).permit(:title, :body, :genre_id, :image, :start_time)
   end
 end

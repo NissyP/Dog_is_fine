@@ -29,3 +29,34 @@
 </div>
 
 </div>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>カテゴリ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.id %></td>
+        <td><%= link_to blog.title, blog_path(blog) %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新規投稿', new_blog_path %>
+
+<%= month_calendar events: @blogs do |date, blogs| %>
+  <%= date.day %>
+
+  <% blogs.each do |blog| %>
+    <div>
+      <%= link_to blog.title, blog %>
+    </div>
+  <% end %>
+ <% end %>

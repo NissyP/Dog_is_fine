@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   
   def my_page
     @user = current_user
+    @blogs = @user.blogs
   end
   
   def edit

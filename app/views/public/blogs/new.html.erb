@@ -4,6 +4,7 @@
   <h3>新規投稿</h3>
 <table>
   <tr><td><%= f.attachment_field :image %></td></tr>
+  <tr><td><%= f.label :start_time, '投稿日' %><%= f.datetime_select :start_time %></td></tr>
   <tr><th><%= f.label :title, 'タイトル' %></th><td><%= f.text_field :title %></td></tr>
   <tr><th><%= f.label :body, '本文'%></th><td><%= f.text_area :body %></td></tr>
   <tr><th><%= f.label :genre_id, 'カテゴリ' %></th><td><%= f.collection_select :genre_id, @genres, :id, :name, :include_blank => "--選択してください--" %></td></tr>
