@@ -2,7 +2,7 @@ class Public::BlogsController < ApplicationController
   
   def new
     @blog = Blog.new
-    @genres = Genre.where(is_active: 'true')
+    @genres = Genre.all
   end
 
   def create
@@ -19,7 +19,7 @@ class Public::BlogsController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
     if params[:genre_id].blank?
-  		@blogs = Blog.all
+  		@blogs = Blog.where.not(genre: "1")
     else
   	  @genre = Genre.find(params[:genre_id])
   		@blogs = @genre.blogs.all
@@ -28,11 +28,12 @@ class Public::BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
+    @blog_comment = BlogComment.new
   end
   
   def edit
     @blog = Blog.find(params[:id])
-    @genres = Genre.where(is_active: 'true')
+    @genres = Genre.all
     if @blog.user != current_user
       redirect_to blogs_path
     end
