@@ -1,10 +1,15 @@
-<h1>投稿フォーム</h1>
+<h5>カテゴリを非公開にすることで、他の人より見えなくなります</h5>
+<h5>投稿日は先日付に予定を入れるときなど以外はそのままで構いません</h5>
+
 <%= form_with model: @blog, url: blogs_path, local:true do |f| %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
-  <h4>ショップ名</h4>
-  <%= f.text_field :title %>
-  <h4>説明</h4>
-  <%= f.text_area :body %>
-  <%= f.submit '投稿' %>
+<table>
+  <tr><th></th><td><%= f.attachment_field :image %></td></tr>
+  <tr><th><%= f.label :start_time, '投稿日' %></th><td><%= f.datetime_select :start_time %></td></tr>
+  <tr><th><%= f.label :title, 'タイトル' %></th><td><%= f.text_field :title %></td></tr>
+  <tr><th><%= f.label :body, '本文'%></th><td><%= f.text_area :body, size: "40x5" %></td></tr>
+  <tr><th><%= f.label :genre_id, 'カテゴリ' %></th><td><%= f.collection_select :genre_id, @genres, :id, :name, :include_blank => "--選択してください--" %></td></tr>
+</table>
+<div class="form-group">
+  <%= f.submit '投稿', class: 'btn btn-primary' %>
+</div>
 <% end %>

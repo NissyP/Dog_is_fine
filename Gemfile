@@ -40,6 +40,8 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
@@ -48,6 +50,8 @@ gem 'rails-i18n', '~> 5.1'
 gem 'pry-byebug'
 gem 'pry-rails'
 gem 'enum_help'
+gem 'simple_calendar', '~> 2.0'
+gem 'kaminari','~> 1.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
