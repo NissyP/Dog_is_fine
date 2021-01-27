@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get '/link' => 'public/homes#link'
 
   scope module: :public do
-    resources :blogs
+    resources :blogs do
+      resources :blog_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
     get '/users/my_page' => 'users#my_page'
     patch '/users' => 'users#update'
     get '/users/my_page/edit' => 'users#edit'
@@ -29,5 +32,4 @@ Rails.application.routes.draw do
     resources :genres
     resources :users, only: [:index, :show, :edit, :update]
   end
-  
 end
