@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :blogs do
       resources :blog_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
     get '/users/my_page' => 'users#my_page'
     patch '/users' => 'users#update'
@@ -31,5 +32,4 @@ Rails.application.routes.draw do
     resources :genres
     resources :users, only: [:index, :show, :edit, :update]
   end
-  
 end

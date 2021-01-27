@@ -1,16 +1,64 @@
-<h2>詳細</h2>
-  		<table class='table'>
-  		  <tr>
-  		    <td><%= attachment_image_tag @blog, :image, format: 'jpeg', size: "200x200" %></td>
-  		    <td><%= @blog.start_time.strftime("%Y/%m/%d %H:%M") %></td>
-          <td><%= link_to @blog.title, blog_path(@blog) %></td>
-          <td><%= @blog.body %></td>
-          <td><%= @blog.genre.name %></td>
-          <% if @blog.user.id == current_user.id %>
-          <td><%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-sm btn-success edit_book_#{@blog.id}" %></td>
-          <td><%= link_to 'Destroy', blog_path(@blog), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@blog.id}"%></td>
-          <% end %>
-        </tr>
+<div class="card">
+  <div class="card-header">
+    <h1><%= @blog.title %></h1>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% if user_signed_in? && @blog.user.id == current_user.id %>
+      <%= link_to '編集', edit_blog_path(@blog), class: "btn btn-sm btn-outline-success edit_book_#{@blog.id}" %>
+      <%= link_to '削除', blog_path(@blog), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-outline-danger destroy_book_#{@blog.id}"%>
+    <% end %>
+    <li class="list-group-item">カテゴリ：<%= @blog.genre.name %></li>
+  </ul>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= attachment_image_tag @blog, :image, format: 'jpeg', size: "400x300" %></p>
+      <p><%= @blog.body %></p>
 
-      </table>
+      <footer class="text-right">いいね：<%= @blog.favorites.count %>　コメント件数：<%= @blog.blog_comments.count %>　<%= @blog.start_time.strftime("%Y/%m/%d %H:%M") %></footer>
+    </blockquote>
+  </div>
+</div>
+
+<div class = "row">
+  <div class = col-md-4>
+        <% if user_signed_in? %>
+          <% if user_signed_in? && @blog.favorited_by?(current_user) %>
+              <%= link_to blog_favorites_path(@blog), method: :delete do %>
+                <button type="button" class="btn btn-lg btn-block btn-outline-danger"><i class="fas fa-heart"></i>いいねの解除</button>
+              <% end %>
+          <% else %>
+              <%= link_to blog_favorites_path(@blog), method: :post do %>
+                <button type="button" class="btn btn-lg btn-block btn-outline-danger"><i class="far fa-heart"></i>いいね</button>
+              <% end %>
+          <% end %>
+          <div class="new-comment">
+          <%= form_with(model:[@blog, @blog_comment], url: blog_blog_comments_path(@blog), local: true) do |f| %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメント", size: "40x5" %>
+            <%= f.submit "送信する", class: 'btn btn-success' %>
+          <% end %>
+          </div>
+        <% end %>
+        
+      </div>
+        
+      <div class = col-md-8>
+      <div class="comments">
+        <p></p>
+        <% @blog.blog_comments.each do |blog_comment| %>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= blog_comment.user.name %> さんのコメント</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= blog_comment.created_at.strftime('%Y/%m/%d') %></h6>
+            <p class="card-text"><%= blog_comment.comment %></p>
+            <% if user_signed_in? && blog_comment.user == current_user %>
+            <div class="comment-delete">
+              <%= link_to "削除", blog_blog_comment_path(blog_comment.blog, blog_comment), method: :delete %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+        </div>
+        </div>
+</div>
       
