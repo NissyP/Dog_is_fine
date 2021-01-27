@@ -19,10 +19,10 @@ class Public::BlogsController < ApplicationController
   def index
     @genres = Genre.where(is_active: true)
     if params[:genre_id].blank?
-  		@blogs = Blog.where.not(genre: "1")
+  		@blogs = Blog.where.not(genre: "1").page(params[:page]).reverse_order
     else
   	  @genre = Genre.find(params[:genre_id])
-  		@blogs = @genre.blogs.all
+  		@blogs = @genre.blogs.page(params[:page]).reverse_order
     end
   end
 
